@@ -1,28 +1,54 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+    .controller('DashCtrl', function ($scope) {
+        var hk = window.plugins.healthkit;
 
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
-})
+        function checkAvailable(func) {
+            hk.available(func)
+        }
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+        function onError() {
+            console.log(arguments)
+            alert("err")
+        }
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
+        function onSuccess() {
+            console.log(arguments)
+            alert("succ")
+        }
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
+        //request weight
+        hk.requestAuthorization(
+            {
+                'readTypes': ['HKQuantityTypeIdentifierBodyMass'],
+                'writeTypes': ['HKQuantityTypeIdentifierBodyMass']
+            },
+            onError,
+            onSuccess
+        )
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-});
+
+        $scope.weight = {}
+
+        function convertToKilo(kilos) {
+            return kilos;
+        }
+
+        $scope.weight.submit = function (weight) {
+
+            hk.saveWeight(
+                {
+                    'unit': 'kg', // g | kg | oz | lb | st
+                    'amount': convertToKilo(kilos),
+                    'date': new Date() // optional, default is new Date()
+                },
+                onSuccess,
+                onError
+            );
+            weight.input="Submitted";
+        }
+
+
+
+    })
+
