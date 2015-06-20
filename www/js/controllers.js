@@ -51,7 +51,8 @@ angular.module('starter.controllers', [])
         $scope.togglePaymentBox = function (_item) {
             _item.paymentBoxShown = !_item.paymentBoxShown;
         }
-    $scope.items = items
+        
+        $scope.items = items
 
         console.log(items)
 
@@ -64,6 +65,7 @@ angular.module('starter.controllers', [])
 
     })
     .controller('accountCtrl', function ($scope) {
+    })
 
 
 
