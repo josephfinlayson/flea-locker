@@ -1,5 +1,31 @@
 angular.module('starter.controllers')
-    .controller('sellCtrl', function ($scope, getCurrentGeo, $compile) {
+    .controller('sellCtrl', function ($scope, getCurrentGeo, $compile, Camera) {
+
+
+      $scope.data = { "ImageURI" :  "Select Image" };
+
+      $scope.getPhoto = function() {
+        console.log('Getting camera');
+        Camera.getPicture().then(function(imageURI) {
+          $scope.data.ImageURI =  imageURI;
+
+
+          alert(imageURI);
+          $scope.lastPhoto = imageURI;
+        //  $scope.upload();
+        }, function(err) {
+          console.err(err);
+        }, {
+          quality: 75,
+          targetWidth: 320,
+          targetHeight: 320,
+          saveToPhotoAlbum: false,
+        //  destinationType: Camera.DestinationType.DATA_URL
+        });
+      };
+
+
+
         $scope.$on('$ionicView.enter', function () {
             initialize()
         });
@@ -65,4 +91,3 @@ angular.module('starter.controllers')
         };
 
     })
-
