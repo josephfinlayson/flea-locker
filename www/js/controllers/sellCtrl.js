@@ -105,7 +105,15 @@ angular.module('starter.controllers')
         }
 
         function initialize(latLong) {
-            myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
+            //Hardcodeswitch! Yeah!
+            //TODO Remove that thing to show the actual address
+
+            /*myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
+            /*/
+            myLatlng = new google.maps.LatLng(52.5194274,13.423138);
+            /**/
+
+
             var mapOptions = {
                 center: myLatlng,
                 zoom: 16,
