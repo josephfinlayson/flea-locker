@@ -1,17 +1,50 @@
-<ion-view view-title="Sell">
-  <ion-content class="padding">
-    SELL
-     <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
-     <!--<img ng-src="data.ImageURI" id="smallimage">-->
-    <img ng-src="{{lastPhoto}}" style="max-width: 100%; max-width: 100%;">
-    Pick a locker!
+<ion-view view-title="Sell an item">
+    <ion-content class="padding">
 
-    <div class="map-wrapper">
+      <form ng-submit="submitForm(form)">
 
-      <div id="map"
-           data-tap-disabled="true"></div>
+        <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
+        <!--<img ng-src="data.ImageURI" id="smallimage">-->
+        <img ng-src="{{lastPhoto}}" style="max-width: 100%; max-width: 100%;">
 
-    </div>
 
-  </ion-content>
+        <div class="list">
+            <label class="item item-input">
+                <input  type="text" placeholder="location"  ng-model="form.location">
+            </label>
+
+            <label class="item item-input">
+                <input type="text" placeholder="Itemname" ng-model="form.itemName">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Itemprice" ng-model="form.itemPrice">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Lockercode" ng-model="form.lockerCode">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Seller id" ng-model="form.sellerId">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Locker id" ng-model="form.lockerId">
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Description" ng-model="form.description"></textarea>
+            </label>
+            <button type="submit" class="button button-balanced">
+              Create item
+            </button>
+
+
+        </div>
+      </form>
+
+
+        Pick a locker!
+        <div class="map-wrapper">
+            <div id="map" data-tap-disabled="true"></div>
+        </div>
+
+
+    </ion-content>
 </ion-view>
