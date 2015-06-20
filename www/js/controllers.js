@@ -1,7 +1,28 @@
-angular.module('starter.controllers', ['starter.services'])
-    .controller('buyCtrl', function ($scope) {
+/*
+    Class for items. Only for Benji use right now.
+ */
 
-        $scope.toggleSearch = function () {
-            $scope.buttonIsShown = !$scope.buttonIsShown;
-        }
+angular.module('starter.controllers', [])
+
+.config(function($compileProvider) {
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+})
+
+    .controller('sellCtrl', function ($scope) {
+
     })
+    .controller('accountCtrl', function ($scope) {
+    })
+
+
+
+.controller('buyCtrl', function($scope) {
+  //takePicture();
+})
+
+
+
+
+.controller('accountCtrl', function($scope) {
+
+})
