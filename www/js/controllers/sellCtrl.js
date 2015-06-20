@@ -160,4 +160,9 @@ angular.module('starter.controllers')
 
             })
         }
+    }).service('postForm', function($http, endPointAddress){
+        return function(form){
+            $http.post(endPointAddress + '/postItem', form)
+
+        }
     })
