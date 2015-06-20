@@ -1,39 +1,40 @@
 <ion-view view-title="Sell">
-  <ion-content class="padding">
-    SELL
-    <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
-    <!--<img ng-src="data.ImageURI" id="smallimage">-->
-    <img ng-src="{{lastPhoto}}" style="max-width: 100%; max-width: 100%;">
+    <ion-content class="padding">
+        <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
+        <!--<img ng-src="data.ImageURI" id="smallimage">-->
+        <img ng-src="{{lastPhoto}}" style="max-width: 100%; max-width: 100%;">
 
 
-    <div class="list">
-      <label class="item item-input">
-        <input type="text" placeholder="Itemname">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Itemprice">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Lockercode">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Seller id">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Locker id">
-      </label>
-      <label class="item item-input">
-        <textarea placeholder="Description"></textarea>
-      </label>
-    </div>
-Pick a locker!
-    <div class="map-wrapper">
+        <div class="list">
+            <label class="item item-input">
+                <input  type="text" placeholder="location"  ng-model="form.location">
+            </label>
 
-      <div id="map" data-tap-disabled="true"></div>
+            <label class="item item-input">
+                <input type="text" placeholder="Itemname">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Itemprice">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Lockercode">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Seller id">
+            </label>
+            <label class="item item-input">
+                <input type="text" placeholder="Locker id">
+            </label>
+            <label class="item item-input">
+                <textarea placeholder="Description"></textarea>
+            </label>
 
-    </div>
+        </div>
+        Pick a locker!
+        <div class="map-wrapper">
+            <div id="map" data-tap-disabled="true"></div>
+        </div>
 
 
-
-  </ion-content>
+    </ion-content>
 </ion-view>

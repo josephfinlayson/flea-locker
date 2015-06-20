@@ -3,14 +3,13 @@ angular.module('starter.controllers')
         var myLatlng,
             globalMap,
             selectedMarker;
+        $scope.form = {};
         $scope.data = {"ImageURI": "Select Image"};
 
         $scope.getPhoto = function () {
             console.log('Getting camera');
             Camera.getPicture().then(function (imageURI) {
                 $scope.data.ImageURI = imageURI;
-
-
                 alert(imageURI);
                 $scope.lastPhoto = imageURI;
                 //  $scope.upload();
@@ -28,9 +27,9 @@ angular.module('starter.controllers')
 
         $scope.$on('$ionicView.enter', function () {
             getCurrentGeo
-                .then(initialize)
-                .then(doPlacesSearch)
-                .then(placeMarkersOnMap)
+                .then(initialize) //this passes the map
+                .then(doPlacesSearch) //this consumes it
+                .then(placeMarkersOnMap) //this doesn't need to see the map
         });
 
         function doPlacesSearch(map) {
@@ -120,7 +119,7 @@ angular.module('starter.controllers')
                 var marker = dropMarker(event, true)
                 getAddressForLocation(marker.getPosition())
                     .then(function (loc) {
-                    $scope.location = loc
+                    $scope.form.location = loc
                 })
             });
 
@@ -152,7 +151,6 @@ angular.module('starter.controllers')
         var geocoder = new google.maps.Geocoder();
 
         return function(latLng){
-            console.log(latLng)
             return $q(function (res, ref) {
                 geocoder.geocode({
                     latLng: latLng
