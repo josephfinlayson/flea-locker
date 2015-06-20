@@ -6,6 +6,14 @@ angular.module('starter.controllers')
         $scope.form = {};
         $scope.data = {"ImageURI": "Select Image"};
 
+
+        $scope.submitForm = function (form) {
+          $scope.form = form;
+          form = '';
+          console.log($scope.form);
+        };
+
+
         $scope.getPhoto = function () {
             console.log('Getting camera');
             Camera.getPicture().then(function (imageURI) {

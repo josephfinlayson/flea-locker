@@ -8407,4 +8407,22 @@ a.button {
   background-color: #33cd5f; }
 
 .featuredOfferImg {
+  max-height: inherit;
   max-width: 100%; }
+
+.lockerCode {
+  background-color: gold;
+  font-family: Consolas, Lucida Console, monospace;
+  font-size: 16pt;
+  text-align: left; }
+
+h2 {
+  font-size: 16pt; }
+
+.featureSlideMask {
+  overflow: hidden;
+  max-height: 200px;
+  -webkit-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+  -moz-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+  -ms-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
+  clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%); }

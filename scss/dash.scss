@@ -1,3 +1,10 @@
+@mixin clip-path($clip) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
 .featuredOfferBox{
   //height: 400px;
   background-color: #33cd5f;
@@ -5,6 +12,29 @@
 
 .featuredOfferImg{
   //padding: 10px;
+  max-height: inherit;
   max-width: 100%;
   //mask: ;
+}
+
+.lockerCode{
+  background-color: gold;
+  font-family: Consolas, Lucida Console, monospace;
+  font-size: 16pt;
+  text-align: left;
+}
+
+h2{
+  font-size: 16pt;
+}
+
+#featuredItems{
+
+}
+
+.featureSlideMask{
+
+  overflow: hidden;
+  max-height: 200px;
+  @include clip-path(polygon(0 20%, 100% 0, 100% 80%, 0 100%));
 }
