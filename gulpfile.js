@@ -7,11 +7,8 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var inject = require('gulp-inject');
-
-
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-
 
 var angularFilesort = require('gulp-angular-filesort');
 var paths = {
@@ -23,7 +20,7 @@ var paths = {
 gulp.task('default', ['sass']);
 
 gulp.task('sass', function (done) {
-    return    gulp.src('./scss/ionic.app.scss')
+    return gulp.src('./scss/ionic.app.scss')
         .pipe(sass())
         .pipe(gulp.dest('./www/css/'))
         .pipe(minifyCss({
@@ -36,10 +33,8 @@ gulp.task('sass', function (done) {
         .pipe(browserSync.stream());
 });
 
-
 gulp.task('injectJS', function () {
     var target = gulp.src('./www/index.html');
-
     return target
         .pipe(inject(
             gulp.src(paths.js, {})
@@ -49,7 +44,6 @@ gulp.task('injectJS', function () {
 
             }))
         .pipe(gulp.dest('./www'))
-
 });
 
 gulp.task('watch', function () {
