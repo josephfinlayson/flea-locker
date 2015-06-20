@@ -14,7 +14,8 @@ var angularFilesort = require('gulp-angular-filesort');
 var paths = {
     sass: ['./scss/**/*.scss'],
     js: ['./www/js/**/*.js'],
-    css: ['./www/css/**/*.css']
+    css: ['./www/css/**/*.css'],
+    html: ['./www/templates/**/*.html']
 };
 
 gulp.task('default', ['sass']);
@@ -53,6 +54,7 @@ gulp.task('watch', function () {
             }
         });
 
+        gulp.watch(paths.html).on('change', browserSync.reload)
         gulp.watch(paths.js).on('change', browserSync.reload)
         gulp.watch(paths.sass, ['sass'])
         gulp.watch(paths.css).on('change', browserSync.reload)
