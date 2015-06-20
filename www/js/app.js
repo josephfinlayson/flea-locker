@@ -34,7 +34,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   
 
   // Each tab has its own nav history stack:
-
   .state('tab.buy', {
     url: '/buy',
     views: {

@@ -8397,81 +8397,14 @@ a.button {
   -webkit-transition-duration: 0s;
   transition-duration: 0s; }
 
-html, body {
-  color: blue;
-  height: 100%; }
-
-.weight-input {
-  position: fixed;
-  width: 100%;
-  top: 15em;
-  text-align: center; }
-
-input[type="tel"] {
-  text-align: center; }
-
-[nav-view-transition="android"] [nav-view="entering"],
-[nav-view-transition="android"] [nav-view="leaving"] {
-  -webkit-transition-duration: 5s;
-  transition-duration: 5s;
-  -webkit-transition-timing-function: cubic-bezier(0.3, 0.9, 0.4, 1);
-  transition-timing-function: cubic-bezier(0.3, 0.9, 0.4, 1);
-  -webkit-transition-property: opacity, -webkit-transform;
-  transition-property: opacity, transform; }
-
-[nav-view-transition="android"][nav-view-direction="forward"],
-[nav-view-transition="android"][nav-view-direction="back"] {
-  background-color: #000; }
-
-[nav-view-transition="android"] [nav-view="active"],
-[nav-view-transition="android"][nav-view-direction="forward"] [nav-view="entering"],
-[nav-view-transition="android"][nav-view-direction="back"] [nav-view="leaving"] {
-  z-index: 3; }
-
-[nav-view-transition="android"][nav-view-direction="back"] [nav-view="entering"],
-[nav-view-transition="android"][nav-view-direction="forward"] [nav-view="leaving"] {
-  z-index: 2; }
-
-.well[nav-view] {
-  height: 65px; }
-
-.nav-view-container {
-  position: fixed;
-  display: none; }
-
-[nav-view].ng-enter, [nav-view].ng-leave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out; }
-
-[nav-view].ng-enter {
-  opacity: 0;
-  -webkit-transform: scale3d(0.5, 0.5, 0.5);
-  -moz-transform: scale3d(0.5, 0.5, 0.5);
-  transform: scale3d(0.5, 0.5, 0.5); }
-
-[nav-view].ng-enter-active {
-  opacity: 1;
-  -webkit-transform: scale3d(1, 1, 1);
-  -moz-transform: scale3d(1, 1, 1);
-  transform: scale3d(1, 1, 1); }
-
-[nav-view].ng-leave {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0); }
-
-[nav-view].ng-leave-active {
-  opacity: 0;
-  -webkit-transform: translate3d(100px, 0, 0);
-  -moz-transform: translate3d(100px, 0, 0);
-  transform: translate3d(100px, 0, 0); }
+.map-wrapper {
+  display: flex;
+  min-height: 400px; }
+  .map-wrapper #map {
+    flex: 1; }
 
 .featuredOfferBox {
-  height: 200px;
   background-color: #33cd5f; }
+
+.featuredOfferImg {
+  max-width: 100%; }
