@@ -1,3 +1,4 @@
+
 <ion-view view-title="Flea Locker">
 
   
@@ -5,32 +6,46 @@
   <ion-content class="padding">
 
 
-    <h1>Sell Stuff <small>and gotta catch'em all</small></h1>
+    <h1>Sell Stuff <small> gotta catch'em all</small></h1>
+
+    <h2 class="featuredOffersHeader">Hot right now</h2>
 
     <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" show-pager="false" does-continue="true">
-      <ion-slide>
-        <div class="featuredOfferBox">
-          <h1>Headphones</h1>
-          <img class="featuredOfferImg" src="img/headphones.jpg">
-          <div class="buyButton">
-            <button class="button">
-              Gonna catch'em
-            </button>
+      <!--<ion-slide>-->
+        <!--<div class="featuredOfferBox">-->
+          <!--<h1>Headphones</h1>-->
+          <!--<img class="featuredOfferImg" src="img/headphones.jpg">-->
+          <!--<div class="buyButton">-->
+            <!--<button class="button">-->
+              <!--Gonna catch'em-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-slide>-->
+      <!--<ion-slide>-->
+        <!--<div class="featuredOfferBox">-->
+          <!--<h1>Nokia Mobile</h1>-->
+          <!--<img class="featuredOfferImg" src="img/nokia.png">-->
+          <!--<div class="buyButton">-->
+            <!--<button class="button">-->
+              <!--Gonna catch'em-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</ion-slide>-->
+      <!-- -->
+        <ion-slide ng-repeat="item in items">
+          <div class="featuredOfferBox">
+            <h3>{{item.itemName}}</h3>
+            <img class="featuredOfferImg" src="{{item.image}}">
+            <div class="buyButton">
+              <button class="button">
+                Gonna catch'em
+              </button>
+            </div>
           </div>
-        </div>
-      </ion-slide>
-      <ion-slide>
-        <div class="featuredOfferBox">
-          <h1>Nokia Mobile</h1>
-          <img class="featuredOfferImg" src="img/nokia.png">
-          <div class="buyButton">
-            <button class="button">
-              Gonna catch'em
-            </button>
-          </div>
-        </div>
-      </ion-slide>
-    </ion-slide-box>
+        </ion-slide>
+      </ion-slide-box>
 
     <h2>Recent Offers
       <button class="button"
@@ -47,20 +62,22 @@
     </div>
 
 
-    <div class="list card">
+    <div class="list card" ng-repeat="item in items">
       <div class="item item-text-wrap">
-        <h3>Headphones</h3>
+        <h3>{{item.itemName}}</h3>
       </div>
       <div class="item item-image">
-        <img src="img/headphones.jpg">
+        <img src="{{item.image}}">
       </div>
       <div class="item item-text-wrap">
-        <p>Sennheiser. Great sound!</p>
+        <p>{{item.description}}</p>
         <small>2km from you</small>
 
       </div>
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
+      <div class="item tabs tabs-secondary tabs-icon-left"
+              ng-hide="item.paymentBoxShown">
+        <a class="tab-item" href="#"
+                ng-click="togglePaymentBox(item)">
           <i class="icon ion-key"></i>
           Buy & unlock
         </a>
@@ -73,34 +90,9 @@
           Share
         </a>
       </div>
-    </div>
-
-    <div class="card">
-      <div class="item item-text-wrap">
-        <h3>Nokia Phone</h3>
-      </div>
-      <div class="item item-image">
-        <img src="img/nokia.png">
-      </div>
-      <div class="item item-text-wrap">
-        <p>Sennheiser. Great sound!</p>
-        <small>1.5km from you</small>
-
-      </div>
-
-      <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" href="#">
-          <i class="icon ion-key"></i>
-          Buy & unlock
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Ask questions
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
+      <div class="PaymentBox"
+           ng-show="item.paymentBoxShown">
+        Pay that
       </div>
     </div>
 
