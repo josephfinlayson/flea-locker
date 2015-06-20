@@ -1,5 +1,4 @@
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngAnimate'])
-
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -14,7 +13,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
+    $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
       $ionicConfigProvider.views.transition('android')
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
@@ -29,8 +29,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     templateUrl: "templates/tabs.html"
   })
 
-  // Each tab has its own nav history stack:
 
+
+  
+
+  // Each tab has its own nav history stack:
   .state('tab.buy', {
     url: '/buy',
     views: {
@@ -60,6 +63,24 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   });
+
+
+  // Camera stuff
+
+  function takePicture() {
+    navigator.camera.getPicture(function(imageURI) {
+
+      // imageURI is the URL of the image that we can use for
+      // an <img> element or backgroundImage.
+
+    }, function(err) {
+
+      // Ruh-roh, something bad happened
+
+    }, cameraOptions);
+  }
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/buy');
