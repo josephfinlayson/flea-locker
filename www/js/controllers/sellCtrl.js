@@ -1,8 +1,8 @@
 angular.module('starter.controllers')
-    .controller('sellCtrl', function ($scope, getCurrentGeo, $compile, getLocalLockers, Camera) {
+    .controller('sellCtrl', function ($scope, getCurrentGeo, $compile, getLocalLockers, Camera, getAddressForLocation) {
         var myLatlng,
-        globalMap,
-        selectedMarker;
+            globalMap,
+            selectedMarker;
         $scope.data = {"ImageURI": "Select Image"};
 
         $scope.getPhoto = function () {
@@ -40,6 +40,7 @@ angular.module('starter.controllers')
         function placeMarkersOnMap(places) {
             createMarkers(places);
         }
+
         function createMarkers(places) {
             places.forEach(dropMarker)
         }
@@ -69,7 +70,6 @@ angular.module('starter.controllers')
                     scaledSize: new google.maps.Size(25, 25)
                 };
             }
-
             var marker = new google.maps.Marker({
                 map: globalMap,
                 icon: image,
@@ -77,26 +77,28 @@ angular.module('starter.controllers')
                 position: location
             });
 
-            if (clickEvent === true && selectedMarker){
-                console.log(clickEvent)
+            if (clickEvent === true && selectedMarker) {
                 selectedMarker.setMap(null)
                 selectedMarker = marker;
                 marker.setMap(globalMap)
-                console.log("asd")
             } else if (clickEvent === true) {
-                console.log("asdaa")
                 selectedMarker = marker;
                 marker.setMap(globalMap)
             } else {
                 marker.setMap(globalMap)
             }
+
+            google.maps.event.addListener(marker, 'click', function () {
+                var infowindow = new google.maps.InfoWindow();
+                infowindow.setContent(place.name);
+                infowindow.open(glovalMap, this);
+            });
+
+            return marker;
         }
 
         function initialize(latLong) {
-            console.log("initialising")
-
             myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
-
             var mapOptions = {
                 center: myLatlng,
                 zoom: 16,
@@ -115,7 +117,11 @@ angular.module('starter.controllers')
 
             google.maps.event.addListener(map, 'click', function (event) {
                 //infowindow.open(map, marker);
-                dropMarker(event, true)
+                var marker = dropMarker(event, true)
+                getAddressForLocation(marker.getPosition())
+                    .then(function (loc) {
+                    $scope.location = loc
+                })
             });
 
             globalMap = map
@@ -141,5 +147,19 @@ angular.module('starter.controllers')
                 service.textSearch(request, res)
             })
 
+        }
+    }).service('getAddressForLocation', function ($q) {
+        var geocoder = new google.maps.Geocoder();
+
+        return function(latLng){
+            console.log(latLng)
+            return $q(function (res, ref) {
+                geocoder.geocode({
+                    latLng: latLng
+                }, function(a){
+                    res(a[0].formatted_address)
+                });
+
+            })
         }
     })
