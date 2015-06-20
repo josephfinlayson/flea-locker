@@ -8436,7 +8436,8 @@ input[type="tel"] {
   height: 65px; }
 
 .nav-view-container {
-  position: relative; }
+  position: fixed;
+  display: none; }
 
 [nav-view].ng-enter, [nav-view].ng-leave {
   position: absolute;

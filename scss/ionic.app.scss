@@ -31,7 +31,7 @@ html, body {
   width: 100%;
   top: 15em;
   text-align: center;
-//  top: 15em;
+  //  top: 15em;
 }
 
 input[type="tel"] {
@@ -71,7 +71,8 @@ input[type="tel"] {
 }
 
 .nav-view-container {
-  position: relative;
+  position: fixed;
+  display: none;
 }
 
 [nav-view].ng-enter, [nav-view].ng-leave {
