@@ -8404,5 +8404,7 @@ a.button {
     flex: 1; }
 
 .featuredOfferBox {
-  height: 200px;
   background-color: #33cd5f; }
+
+.featuredOfferImg {
+  max-width: 100%; }
