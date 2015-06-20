@@ -18,7 +18,9 @@ angular.module('starter.controllers')
             this.itemPrice = _itemPrice;
             this.location = _location; //How will this be done if we want to anonymise the exact location of the locker
             this.description = _description;
+
             this.paymentBoxShown = false;
+            this.presentFeature = false;
         };
 
         items = [];
@@ -34,7 +36,7 @@ angular.module('starter.controllers')
         ));
 
         items.push(new Item(
-            0,
+            1,
             'img/nokia.png',
             'Nokia Phone',
             '30',
@@ -54,7 +56,19 @@ angular.module('starter.controllers')
 
         }
 
-        $scope.items = items
+        $scope.items = items;
+
+        $scope.showMeta = function (slide) {
+
+            var _activeItem = items[slide % items.length];
+
+            for(item in items){
+                items[item].presentFeature = false;
+            }
+
+            _activeItem.presentFeature = true;
+
+        }
 
         console.log(items)
 
