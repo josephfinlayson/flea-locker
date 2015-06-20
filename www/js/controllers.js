@@ -1,6 +1,12 @@
 angular.module('starter.controllers', [])
 
-    .controller('DashCtrl', function ($scope) {
+    .controller('buyCtrl', function ($scope) {
 
     })
 
+    .controller('sellCtrl', function ($scope) {
+
+    })
+    .controller('accountCtrl', function ($scope) {
+
+    })
