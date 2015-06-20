@@ -8403,6 +8403,9 @@ a.button {
   .map-wrapper #map {
     flex: 1; }
 
+* {
+  font-family: "Helvetica Neue", "Roboto", sans-serif; }
+
 .featuredOfferBox {
   background-color: #33cd5f; }
 

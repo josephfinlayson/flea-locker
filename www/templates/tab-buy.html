@@ -30,27 +30,26 @@
       </div>
 
     </div>
-    {{items[activeItem] | json}}
     <div class="featureMetaBox">
       <div id="featureMeta{{item.itemId}}" class="featureMeta"
            ng-repeat="item in items"
            ng-show="item.presentFeature"
            >
-        <h3>{{item.itemName}}</h3>
-        <button class="button" ng-click="scrollToItem(item)">
+        <h3>{{item.itemName}} <button class="button button-small" ng-click="scrollToItem(item)">
           Gonna catch'em
-        </button>
+        </button></h3>
+
       </div>
     </div>
 
     <h2>Recent Offers
-      <button class="button"
-                              ng-click="toggleSearch()"
-                          >
-        <i class="icon ion-search"></i></button></h2>
+      <!--<button class="button button-small"-->
+                              <!--ng-click="toggleSearch()"-->
+                          <!-->
+        <!--<i class="icon ion-search"></i></button>-->
+    </h2>
 
-    <div id="searchBox"
-         ng-show="buttonIsShown" class="list list-inset">
+    <div id="searchBox" class="list list-inset">
       <label class="item item-input">
         <i class="icon ion-search placeholder-icon"></i>
         <input type="text" placeholder="Search">
@@ -58,7 +57,7 @@
     </div>
 
 
-    <div id="[itemBox{{item.itemId}}]" class="list card" ng-repeat="item in items">
+    <div id="itemBox{{item.itemId}}" class="list card" ng-repeat="item in items">
       <div class="item item-text-wrap">
         <h3>{{item.itemName}}</h3>
       </div>

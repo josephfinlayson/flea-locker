@@ -110,7 +110,7 @@ angular.module('starter.controllers')
 
             /*myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
             /*/
-            myLatlng = new google.maps.LatLng(52.5194274,13.423138);
+            myLatlng = new google.maps.LatLng(52.5194274,13.423138);w
             /**/
 
 
