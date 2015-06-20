@@ -11,35 +11,13 @@
     <h2 class="featuredOffersHeader">Hot right now</h2>
 
     <ion-slide-box on-slide-changed="slideHasChanged($index)" auto-play="true" show-pager="false" does-continue="true">
-      <!--<ion-slide>-->
-        <!--<div class="featuredOfferBox">-->
-          <!--<h1>Headphones</h1>-->
-          <!--<img class="featuredOfferImg" src="img/headphones.jpg">-->
-          <!--<div class="buyButton">-->
-            <!--<button class="button">-->
-              <!--Gonna catch'em-->
-            <!--</button>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</ion-slide>-->
-      <!--<ion-slide>-->
-        <!--<div class="featuredOfferBox">-->
-          <!--<h1>Nokia Mobile</h1>-->
-          <!--<img class="featuredOfferImg" src="img/nokia.png">-->
-          <!--<div class="buyButton">-->
-            <!--<button class="button">-->
-              <!--Gonna catch'em-->
-            <!--</button>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</ion-slide>-->
-      <!-- -->
+
         <ion-slide ng-repeat="item in items">
           <div class="featuredOfferBox">
             <h3>{{item.itemName}}</h3>
             <img class="featuredOfferImg" src="{{item.image}}">
             <div class="buyButton">
-              <button class="button">
+              <button class="button" ng-click="scrollToItem(item)">
                 Gonna catch'em
               </button>
             </div>
@@ -62,7 +40,7 @@
     </div>
 
 
-    <div class="list card" ng-repeat="item in items">
+    <div id="[itemBox{{item.itemId}}]" class="list card" ng-repeat="item in items">
       <div class="item item-text-wrap">
         <h3>{{item.itemName}}</h3>
       </div>
@@ -90,9 +68,18 @@
           Share
         </a>
       </div>
-      <div class="PaymentBox"
+      <div class="PaymentBox item tabs tabs-secondary"
            ng-show="item.paymentBoxShown">
-        Pay that
+        <div class="paymentStepBox1">
+          <form id="checkout" method="post" action="/checkout">
+            <div id="payment-form"></div>
+            <input type="submit" value="Pay $10">
+          </form>
+          <button class="button"
+                ng-click="togglePaymentBox(item)"
+                >Nonono
+          </button>
+        </div>
       </div>
     </div>
 
