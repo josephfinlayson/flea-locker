@@ -1,4 +1,10 @@
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngAnimate'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngAnimate']).config(function($ionicConfigProvider){
+
+  $ionicConfigProvider.views.maxCache(0);
+
+})
+
+
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +36,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   })
 
   // Each tab has its own nav history stack:
-
   .state('tab.buy', {
     url: '/buy',
     views: {

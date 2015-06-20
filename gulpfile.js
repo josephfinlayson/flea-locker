@@ -47,7 +47,7 @@ gulp.task('injectJS', function () {
         .pipe(gulp.dest('./www'))
 });
 
-gulp.task('watch', function () {
+gulp.task('watch',['injectJS'], function () {
         browserSync.init({
             server: {
                 baseDir: "./www"
