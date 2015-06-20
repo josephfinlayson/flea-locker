@@ -1,8 +1,6 @@
 angular.module('starter.controllers')
     .controller('sellCtrl', function ($scope, getCurrentGeo, $compile) {
         $scope.$on('$ionicView.enter', function () {
-
-            debugger;
             initialize()
         });
 
