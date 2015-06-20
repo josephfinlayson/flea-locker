@@ -8470,3 +8470,7 @@ input[type="tel"] {
   -webkit-transform: translate3d(100px, 0, 0);
   -moz-transform: translate3d(100px, 0, 0);
   transform: translate3d(100px, 0, 0); }
+
+.featuredOfferBox {
+  height: 200px;
+  background-color: #33cd5f; }
