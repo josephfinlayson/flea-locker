@@ -48,7 +48,7 @@ gulp.task('injectJS', function() {
 
 });
 
-gulp.task('watch', function() {
+gulp.task('watch',['injectJS'], function() {
     gulp.watch(paths.sass, ['sass']);
 });
 
