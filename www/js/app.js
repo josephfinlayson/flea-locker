@@ -6,6 +6,7 @@ if (window.location.host.indexOf('localh')!== -1){
 } else {
     endPoint = 'http://lockerback.herokuapp.com/api'
 }
+
 endPoint = 'http://lockerback.herokuapp.com/api'
 
 
@@ -25,7 +26,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
-        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|tel):/);
+        $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):|data:image\//);
+
         $ionicConfigProvider.views.transition('android')
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
