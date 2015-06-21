@@ -70,11 +70,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         templateUrl: 'templates/tab-sell.html',
                         controller: 'sellCtrl'
                     }
+
                 }
             })
 
             .state('tab.success-sell', {
                 url: '/success-sell',
+                params: {item: ""},
                 views: {
                     'tab-sell': {
                         templateUrl: 'templates/tab-success-sell.html',

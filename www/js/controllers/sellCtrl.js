@@ -3,6 +3,7 @@ angular.module('starter.controllers')
                                       getCurrentGeo,
                                       $compile,
                                       getLocalLockers,
+                                      $state,
                                       Camera,
                                       toBase64,
                                       getAddressForLocation,
@@ -10,10 +11,9 @@ angular.module('starter.controllers')
         var myLatlng,
             globalMap,
             selectedMarker;
+
         $scope.form = {};
         $scope.data = {"ImageURI": "Select Image"};
-
-        toBase64()
 
         $scope.submitForm = function (form) {
             //form = '';
@@ -22,7 +22,9 @@ angular.module('starter.controllers')
             toBase64(form.lastPhoto).then(
                 function (b64) {
                     form.image = b64 || 'asd'
-                    postForm(form);
+                    postForm(form).then(function(){
+                        $state.go('tab.success-sell', {item: $scope.form}) ;
+                    })
                 }
             )
             //NICE WORK GEORG!
@@ -196,8 +198,17 @@ angular.module('starter.controllers')
         }
     }).service('postForm', function ($http, endPointAddress) {
         return function (form) {
-            $http.post(endPointAddress + '/postItem', form).then(function (res) {
-                console.log("response from ruby", res.data)
+            return $http.post(endPointAddress + '/postItem', form)
+                .then(function (res) {
+                    return res.data;
+                    //return $q(function(){
+                    //
+                    //})
+                    //$timeout(function(){
+                    //    res.data
+                    //
+                    //})
+                //console.log("response from ruby", )
             })
         }
     }).service('toBase64', function ($q) {
