@@ -10,11 +10,8 @@ angular.module('starter.controllers')
     getItemsFromServer, getItems) {
 
         items[0].presentFeature = true;
-
-        console.log(getItemsFromServer)
         $scope.saveAndGo = function(item){
             console.log(item);
-
             $state.go('tab.success', {item: item})
 
         }
@@ -35,20 +32,13 @@ angular.module('starter.controllers')
             var _position = $ionicPosition.position(_element);
             $ionicScrollDelegate.scrollTo(0, _position.top);
         }
-
         $scope.$on('$ionicView.afterEnter', function(){
-
-            $scope.items = getItems;
-
-            getItemsFromServer.then(function(items){
-                console.log(items)
+            getItemsFromServer().then(function(items){
+                $scope.items = []
+                $scope.items = getItems;
                 var items =  _.chain(items).reverse().value()
                 $scope.items = items.concat($scope.items);
-                console.log($scope.items)
-                //$scope.$apply()
-                $timeout(function(){})
             })
-
         })
 
         $scope.showMeta = function (slide) {
@@ -162,9 +152,9 @@ angular.module('starter.controllers')
         return items;
 
     }).service('getItemsFromServer', function($http, endPointAddress){
-      return  $http.get(endPointAddress + '/items').then(function(res){
-
-            return res.data;
-        })
-
+      return function(){
+         return $http.get(endPointAddress + '/items').then(function(res){
+                return res.data;
+            })
+        }
     })
