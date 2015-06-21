@@ -7,7 +7,6 @@
             <!--<img ng-src="data.ImageURI" id="smallimage">-->
             <img ng-src="{{lastPhoto}}" style="max-width: 100%; max-width: 100%;">
 
-
             <div class="list">
 
                 <label class="item item-input">
@@ -43,7 +42,8 @@
 
             </div>
 
-            <button type="submit" class="button button-block button-balanced" ui-sref="tab.success-sell">
+            <button type="submit" class="button button-block button-balanced"
+                    ng-click="submitForm(form)">
                 Create item
             </button>
 

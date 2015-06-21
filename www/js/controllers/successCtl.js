@@ -2,12 +2,8 @@
  * Created by benjaminskirlo1 on 20.06.15.
  */
 angular.module('starter.controllers')
-    .controller('successCtrl', function ($scope, $stateParams, successItem, getAddressForLocation) {
-        a = successItem.get()
-        console.log(a)
-
-        $scope.item = successItem.get();
-
+    .controller('successCtrl', function ($scope, $stateParams, successItem) {
+        $scope.item = $stateParams.item;
         /*myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
          /*/
         var myLatlng = new google.maps.LatLng(52.5194274, 13.423138);
@@ -65,13 +61,4 @@ angular.module('starter.controllers')
         });
 
 
-    }).service('getAddressForLocation', function ($q) {
-        var geocoder = new google.maps.Geocoder();
-
-        return function (ads) {
-            return $q(function (res, ref) {
-
-
-            })
-        }
     })
