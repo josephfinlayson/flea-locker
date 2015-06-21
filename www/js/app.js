@@ -2,10 +2,11 @@ var endPoint;
 
 if (window.location.host.indexOf('localh')!== -1){
     //we running locally
-endPoint = 'http://localhost:9292/api'
+    endPoint = 'http://localhost:9292/api'
 } else {
-endPoint = 'http://localhost:9292/api'
+    endPoint = 'http://lockerback.herokuapp.com/api'
 }
+endPoint = 'http://lockerback.herokuapp.com/api'
 
 
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngAnimate'])
@@ -53,7 +54,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
             .state('tab.success', {
                 url: '/success',
-
+                params: {item: {}},
                 views: {
                     'tab-buy': {
                         templateUrl: 'templates/tab-success.html',
@@ -71,15 +72,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                         controller: 'sellCtrl'
                     }
 
-                }
+                },
+
             })
 
             .state('tab.success-sell', {
                 url: '/success-sell',
-                params: {item: ""},
+                params: {item: {}},
                 views: {
                     'tab-sell': {
-                        templateUrl: 'templates/tab-success-sell.html',
+                        templateUrl: 'templates/tab-success.html',
                         controller: 'successCtrl'
                     }
                 }
