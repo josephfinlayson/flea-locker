@@ -2,9 +2,9 @@ var endPoint;
 
 if (window.location.host.indexOf('localh')!== -1){
     //we running locally
-endPoint = ':9292/api'
+endPoint = 'http://localhost:9292/api'
 } else {
-endPoint = ':9292/api'
+endPoint = 'http://localhost:9292/api'
 }
 
 
@@ -72,6 +72,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                     }
                 }
             })
+
+            .state('tab.success-sell', {
+                url: '/success-sell',
+                views: {
+                    'tab-sell': {
+                        templateUrl: 'templates/tab-success-sell.html',
+                        controller: 'successCtrl'
+                    }
+                }
+            })
+
 
             .state('tab.account', {
                 url: '/account',

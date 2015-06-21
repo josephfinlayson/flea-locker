@@ -1,35 +1,53 @@
 angular.module('starter.controllers')
-    .controller('sellCtrl', function ($scope, getCurrentGeo, $compile, getLocalLockers, Camera, getAddressForLocation) {
+    .controller('sellCtrl', function ($scope,
+                                      getCurrentGeo,
+                                      $compile,
+                                      getLocalLockers,
+                                      Camera,
+                                      toBase64,
+                                      getAddressForLocation,
+                                      postForm) {
         var myLatlng,
             globalMap,
             selectedMarker;
         $scope.form = {};
         $scope.data = {"ImageURI": "Select Image"};
 
+        toBase64()
 
         $scope.submitForm = function (form) {
-          $scope.form = form;
-          form = '';
-          console.log($scope.form);
+            //form = '';
+            //$scope.form = {};
+            console.log(toBase64);
+            toBase64(form.lastPhoto).then(
+                function (b64) {
+                    form.image = b64 || 'asd'
+                    postForm(form);
+                }
+            )
+            //NICE WORK GEORG!
+            console.log($scope.form);
         };
 
 
         $scope.getPhoto = function () {
             console.log('Getting camera');
-            Camera.getPicture().then(function (imageURI) {
-                $scope.data.ImageURI = imageURI;
-                alert(imageURI);
-                $scope.lastPhoto = imageURI;
-                //  $scope.upload();
-            }, function (err) {
-                console.err(err);
-            }, {
-                quality: 75,
-                targetWidth: 320,
-                targetHeight: 320,
-                saveToPhotoAlbum: false,
-                //  destinationType: Camera.DestinationType.DATA_URL
-            });
+            Camera.getPicture()
+                .then(function (imageURI) {
+
+                    $scope.data.ImageURI = imageURI;
+                    $scope.form.lastPhoto = imageURI;
+
+                    //  $scope.upload();
+                }, function (err) {
+                    console.err(err);
+                }, {
+                    quality: 75,
+                    targetWidth: 320,
+                    targetHeight: 320,
+                    saveToPhotoAlbum: false,
+                    //  destinationType: Camera.DestinationType.DATA_URL
+                });
         };
 
 
@@ -109,8 +127,8 @@ angular.module('starter.controllers')
             //TODO Remove that thing to show the actual address
 
             /*myLatlng = new google.maps.LatLng(latLong.coords.latitude, latLong.coords.longitude);
-            /*/
-            myLatlng = new google.maps.LatLng(52.5194274,13.423138);
+             /*/
+            myLatlng = new google.maps.LatLng(52.5194274, 13.423138);
             /**/
 
 
@@ -135,8 +153,8 @@ angular.module('starter.controllers')
                 var marker = dropMarker(event, true)
                 getAddressForLocation(marker.getPosition())
                     .then(function (loc) {
-                    $scope.form.location = loc
-                })
+                        $scope.form.location = loc
+                    })
             });
 
             globalMap = map
@@ -166,19 +184,39 @@ angular.module('starter.controllers')
     }).service('getAddressForLocation', function ($q) {
         var geocoder = new google.maps.Geocoder();
 
-        return function(latLng){
+        return function (latLng) {
             return $q(function (res, ref) {
                 geocoder.geocode({
                     latLng: latLng
-                }, function(a){
+                }, function (a) {
                     res(a[0].formatted_address)
                 });
 
             })
         }
-    }).service('postForm', function($http, endPointAddress){
-        return function(form){
-            $http.post(endPointAddress + '/postItem', form)
-
+    }).service('postForm', function ($http, endPointAddress) {
+        return function (form) {
+            $http.post(endPointAddress + '/postItem', form).then(function (res) {
+                console.log("response from ruby", res.data)
+            })
         }
+    }).service('toBase64', function ($q) {
+            return function (url, outputFormat) {
+                return $q(function (res, rej) {
+
+                var img = new Image();
+                img.crossOrigin = 'Anonymous';
+                img.onload = function () {
+                    var canvas = document.createElement('CANVAS');
+                    var ctx = canvas.getContext('2d');
+                    canvas.height = this.height;
+                    canvas.width = this.width;
+                    ctx.drawImage(this, 0, 0);
+                    var dataURL = canvas.toDataURL(outputFormat || 'image/jpeg');
+                    res(dataURL);
+                    canvas = null;
+                };
+                img.src = url || 'https://upload.wikimedia.org/wikipedia/commons/3/38/JPEG_example_JPG_RIP_010.jpg';
+                });
+            }
     })
