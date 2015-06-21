@@ -8403,6 +8403,27 @@ a.button {
   .map-wrapper #map {
     flex: 1; }
 
+/*
+.item.item-input {
+
+
+   animation-name: slideIn;
+   animation-timing-function: linear;
+   animation-duration: 0.3s;
+}
+
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-40px);
+    }
+    to {
+        transform: translateX(100px) !important;
+    }
+}
+*/
 .featuredOfferBox {
   background-color: #33cd5f; }
 
