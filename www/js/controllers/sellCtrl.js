@@ -16,8 +16,6 @@ angular.module('starter.controllers')
         $scope.data = {"ImageURI": "Select Image"};
 
         $scope.submitForm = function (form) {
-            //form = '';
-            //$scope.form = {};
             console.log(toBase64);
             toBase64(form.lastPhoto).then(
                 function (b64) {
@@ -40,6 +38,7 @@ angular.module('starter.controllers')
                     $scope.data.ImageURI = imageURI;
                     $scope.form.lastPhoto = imageURI;
 
+                    console.log(imageURI)
                     //  $scope.upload();
                 }, function (err) {
                     console.err(err);
