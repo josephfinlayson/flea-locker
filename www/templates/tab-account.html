@@ -17,9 +17,10 @@
     <form class="padding"
           id="checkout"
           method="post"
-          action="/checkout">
+          action="http://lockerback.herokuapp.com/user/123/payment_method/new">
       <div id="payment-form"></div>
-      <input type="submit"
+      <input
+              ng-click="fakeBrainTree()"
              class="button button-block"
 
              value="Alter card details">
