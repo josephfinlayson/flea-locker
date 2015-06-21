@@ -50,8 +50,13 @@ angular.module('starter.controllers')
 
         var geocoder = new google.maps.Geocoder();
 
+        if (typeof $scope.item.location == "array") {
+          var loc = $scope.item.location[0] +"+berlin+germany"
+        } else {
+          var loc = $scope.item.location
+        }
         geocoder.geocode({
-            address: $scope.item.location[0]+"+berlin+germany"
+            address: loc
         }, function (a) {
             var marker = new google.maps.Marker({
                 map: map,
