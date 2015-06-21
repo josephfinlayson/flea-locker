@@ -8403,29 +8403,46 @@ a.button {
   .map-wrapper #map {
     flex: 1; }
 
-/*
-.item.item-input {
+* {
+  font-family: "Helvetica Neue", "Roboto", sans-serif; }
 
+#buyHead {
+  background-image: url("/img/logo.png");
+  background-repeat: no-repeat; }
 
-   animation-name: slideIn;
-   animation-timing-function: linear;
-   animation-duration: 0.3s;
-}
-
-
-
-
-@keyframes slideIn {
-    from {
-        transform: translateX(-40px);
-    }
-    to {
-        transform: translateX(100px) !important;
-    }
-}
-*/
-.featuredOfferBox {
-  background-color: #33cd5f; }
+.featuredOffers {
+  position: relative;
+  top: 100px;
+  height: 300px; }
 
 .featuredOfferImg {
+  max-height: inherit;
   max-width: 100%; }
+
+.lockerCode {
+  background-color: gold;
+  font-family: Consolas, Lucida Console, monospace;
+  font-size: 16pt;
+  text-align: left; }
+
+h2 {
+  font-size: 16pt; }
+
+.featureSlideMask {
+  overflow: hidden;
+  max-height: 200px;
+  -webkit-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  -moz-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  -ms-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%); }
+
+.blur {
+  -webkit-filter: blur(15px); }
+
+.itemImageWrapper {
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 100px; }
+
+.largeItemImage {
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 500px; }
