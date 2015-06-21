@@ -114,11 +114,6 @@ angular.module('starter.controllers')
                 marker.setMap(globalMap)
             }
 
-            google.maps.event.addListener(marker, 'click', function () {
-                var infowindow = new google.maps.InfoWindow();
-                infowindow.setContent(place.name);
-                infowindow.open(glovalMap, this);
-            });
 
             return marker;
         }
@@ -150,7 +145,7 @@ angular.module('starter.controllers')
             });
 
             google.maps.event.addListener(map, 'click', function (event) {
-                //infowindow.open(map, marker);
+                console.log('marler');
                 var marker = dropMarker(event, true)
                 getAddressForLocation(marker.getPosition())
                     .then(function (loc) {
