@@ -1,7 +1,7 @@
 {
-  "name": "barcodemonster",
+  "name": "flohlocker",
   "version": "1.0.0",
-  "description": "barcodeMonster: An Ionic project",
+  "description": "flohlocker: selling stuff without people",
   "dependencies": {
     "gulp": "",
     "gulp-sass": "",
