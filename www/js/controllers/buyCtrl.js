@@ -2,7 +2,7 @@
  * Created by benjaminskirlo1 on 20.06.15.
  */
 angular.module('starter.controllers')
-    .controller('buyCtrl', function ($scope, $ionicScrollDelegate, $ionicPosition) {
+    .controller('buyCtrl', function ($scope, $ionicScrollDelegate, $ionicPosition, successItem, $state) {
 
         var Item = function(
             _itemId,
@@ -10,7 +10,8 @@ angular.module('starter.controllers')
             _itemName,
             _itemPrice,
             _location,
-            _description)
+            _description,
+            _lockerCode)
         {
             this.itemId = _itemId;
             this.image = _image; //link to image
@@ -18,6 +19,7 @@ angular.module('starter.controllers')
             this.itemPrice = _itemPrice;
             this.location = _location; //How will this be done if we want to anonymise the exact location of the locker
             this.description = _description;
+            this.lockerCode = _lockerCode;
 
             this.paymentBoxShown = false;
             this.presentFeature = false;
@@ -29,8 +31,9 @@ angular.module('starter.controllers')
             'img/headphones.jpg',
             'Headphones',
             '10',
-            [",",'where in building', 'locker identifier'],
-            'Sennheiser. Great sound!'
+            ["Amerikanische Gedenkbibliothek",'fronthall', '142'],
+            'Sennheiser. Great sound!',
+            '647832'
 
 
         ));
@@ -40,8 +43,9 @@ angular.module('starter.controllers')
             'img/nokia.png',
             'Nokia Phone',
             '30',
-            [",",'where in building', 'locker identifier'],
-            'Get your self the famous vintage phone'
+            ["Ostbahnhof",'south lockers', '44'],
+            'Get your self the famous vintage phone',
+            '890654'
         ));
 
         items.push(new Item(
@@ -49,8 +53,9 @@ angular.module('starter.controllers')
             'img/camera.jpg',
             'Instant picture camera',
             '25',
-            [",",'where in building', 'locker identifier'],
-            'Not a polaroid but still super cool!'
+            ["Deutscher Bundestag",'guests locker', '343'],
+            'Not a polaroid but still super cool!',
+            '960596'
         ));
 
         items.push(new Item(
@@ -58,8 +63,9 @@ angular.module('starter.controllers')
             'img/duck.jpg',
             'Rubber Duck',
             '50',
-            [",",'where in building', 'locker identifier'],
-            'My best friend has to go because I need to pay my rent. I feel so awful.'
+            ["Etage Eas Hostel",'coin lockers', 'A43'],
+            'My best friend has to go because I need to pay my rent. I feel so awful.',
+            '13627'
         ));
 
         items.push(new Item(
@@ -67,8 +73,9 @@ angular.module('starter.controllers')
             'img/kitty.jpg',
             'Lucky Cat',
             '5',
-            [",",'where in building', 'locker identifier'],
-            'I\'ve been lucky all the time since. Good condition!'
+            ["Alexa Mall",'Basement', '7'],
+            'I\'ve been lucky all the time since. Good condition!',
+            '99533'
         ));
 
         items.push(new Item(
@@ -76,8 +83,9 @@ angular.module('starter.controllers')
             'img/knife.jpg',
             'Swiss Army knife',
             '80',
-            [",",'where in building', 'locker identifier'],
-            'The classsic. Be McGyver'
+            ["ZOB",'lockers outside', '23'],
+            'The classsic. Be McGyver',
+            '12337'
         ));
 
         items.push(new Item(
@@ -86,12 +94,21 @@ angular.module('starter.controllers')
             'Luggage',
             '30',
             [",",'where in building', 'locker identifier'],
-            'Just came back from a long business journey. Never again.'
+            'Just came back from a long business journey. Never again.',
+            '7321'
         ));
 
 
         items[0].presentFeature = true;
 
+
+        $scope.saveAndGo = function(item){
+
+            successItem.save(item)
+
+            $state.go('tab.success')
+
+        }
         $scope.toggleSearch = function () {
             $scope.buttonIsShown = !$scope.buttonIsShown;
         }
@@ -137,5 +154,21 @@ angular.module('starter.controllers')
         }
 
         console.log(items)
+
+    }).service('successItem', function(){
+
+        var items
+
+        return {
+            save: function (item) {
+
+                items = item;
+
+            },
+
+            get: function () {
+                return items
+            }
+        }
 
     })
