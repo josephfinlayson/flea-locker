@@ -14,10 +14,11 @@
                                    does-continue="true">
 
                         <ion-slide id="slide{{$index}}"
-                                   ng-repeat="item in items"
+                                   ng-repeat="item in featured"
                                    class="featureSlide"
                                 >
                             <div class="featuredOfferBox">
+
 
                                 <img class="featuredOfferImg" src="{{item.image}}" ng-click="scrollToItem(item)">
                             </div>

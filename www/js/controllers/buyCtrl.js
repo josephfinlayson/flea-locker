@@ -32,11 +32,15 @@ angular.module('starter.controllers')
             var _position = $ionicPosition.position(_element);
             $ionicScrollDelegate.scrollTo(0, _position.top);
         }
+
+        $scope.featured = getItems;
+
         $scope.$on('$ionicView.afterEnter', function(){
             getItemsFromServer().then(function(items){
                 $scope.items = []
                 $scope.items = getItems;
-                var items =  _.chain(items).reverse().value()
+                var items =  _.chain(items).reverse().value();
+
                 $scope.items = items.concat($scope.items);
             })
         })
