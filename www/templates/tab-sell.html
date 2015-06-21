@@ -10,14 +10,14 @@
             <div class="list">
 
                 <label class="item item-input">
-                    <input type="text" placeholder="Location" ng-model="form.location">
+                    <input type="text" placeholder="Location" ng-model="form.location" >
                 </label>
 
                 <label class="item item-input">
-                    <input type="text" placeholder="Item Name" ng-model="form.itemName">
+                    <input type="text" placeholder="Item Name" data-ng-init="form.itemName= 'Nexus Smartphone'" ng-model="form.itemName">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Item Price" ng-model="form.itemPrice">
+                    <input type="text" placeholder="Item Price" data-ng-init="form.itemPrice= '100€'" ng-model="form.itemPrice">
                 </label>
 
                 <!--<label class="item item-input " animation="slide-left-right">
@@ -25,7 +25,7 @@
                 </label>-->
 
                 <label class="item item-input">
-                    <input type="text" placeholder="Locker Code" ng-model="form.lockerCode">
+                    <input type="text" placeholder="Locker Code" data-ng-init="form.lockerCode= '9657'" ng-model="form.lockerCode">
                 </label>
 
                 <!--<label class="item item-input">-->
@@ -33,11 +33,11 @@
                 <!--</label>-->
 
                 <label class="item item-input">
-                    <input type="text" placeholder="Locker id" ng-model="form.lockerId">
+                    <input type="text" placeholder="Locker id" data-ng-init="form.lockerId= '455gt44'"  ng-model="form.lockerId">
                 </label>
 
                 <label class="item item-input">
-                    <textarea placeholder="Description" ng-model="form.description"></textarea>
+                    <textarea placeholder="Description" data-ng-init="form.description= 'a used but still very good Google Nexus Android smartphone'"  ng-model="form.description"></textarea>
                 </label>
 
             </div>
