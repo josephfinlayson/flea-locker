@@ -5,7 +5,7 @@
 
             <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
             <!--<img ng-src="data.ImageURI" id="smallimage">-->
-            <img ng-src="{{data.lastPhoto}}" style="max-width: 100%; max-width: 100%;">
+            <img ng-src="{{form.lastPhoto}}" style="max-width: 100%; max-width: 100%;">
 
             <div class="list">
 
@@ -52,7 +52,7 @@
 
         Pick a locker!
         <div class="map-wrapper">
-            <div id="map" data-tap-disabled="true"></div>
+            <div id="map" ></div>
         </div>
 
 
