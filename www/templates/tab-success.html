@@ -1,23 +1,23 @@
 <ion-view view-title="Sell">
     <ion-content class="padding">
-        <h1>Great! <small>You successfully bought //thisItem.name//</small></h1>
+        <h1>Great! <small>You successfully bought <span style="font-style: italic">{{item.itemName}}</span>.</small></h1>
 
-        <h2>The code</h2>
-        <div class="lockerCode">//item.lockerCode//</div>
+        <h2>This code will open you the door</h2>
+        <div class="lockerCode">{{item.lockerCode}}</div>
 
-        <h2>Where can I find it?</h2>
+        <h2>Where to find it?</h2>
+        <p>
+            Inside of <span style="font-style: italic">{{item.location[0]}}</span> at
+            <span style="font-style: italic">{{item.location[1]}}</span> in the locker <span style="font-style: italic">{{item.location[2]}}</span>
+        </p>
+        <div class="map-wrapper" style="max-height: 200px;">
 
-        <div class="map-wrapper">
-
-            <div id="map"
+            <div id="success-map"
                  data-tap-disabled="true"></div>
 
         </div>
         
-        <p>
-            Inside of <span style="font-style: italic">//item.location.latlng to an adress by google?!?//</span> at
-            <span style="font-style: italic">//item.location.locationInBuilding//</span> in the locker <span style="font-style: italic">//item.location.lockeridentifier//</span>
-        </p>
+
 
     </ion-content>
 </ion-view>

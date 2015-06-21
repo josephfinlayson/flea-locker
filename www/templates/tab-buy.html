@@ -80,12 +80,13 @@
       <div class="PaymentBox item tabs tabs-secondary"
            ng-show="item.paymentBoxShown">
         <div class="paymentStepBox1">
-          <form id="checkout" method="post" action="/checkout">
+            <!--id="checkout" method="post" action="/checkout"-->
+          <form>
             <div id="payment-form"></div>
-            <input type="submit"
-                   value="Pay $10"
-                    ui-sref="tab.success"
-                    >
+            <button
+                    class="button button-positive"
+                   ng-click="saveAndGo(item)"
+                    > {{item.itemPrice}}€</button>
           </form>
           <button class="button"
                 ng-click="togglePaymentBox(item)"
