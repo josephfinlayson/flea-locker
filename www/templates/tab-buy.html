@@ -6,64 +6,61 @@
   <ion-content class="padding">
 
 
-    <h1>Sell Stuff <small> gotta catch'em all</small></h1>
+    <div id="buyHead">
+      <!--<h1>Sell Stuff <small> gotta catch'em all</small></h1>-->
 
-    <h2 class="featuredOffersHeader">Hot right now</h2>
+      <!--<h2 class="featuredOffersHeader">Hot right now</h2>-->
 
-    <div class="featuredOffers">
-      <div class="featureSlideMask">
-        <ion-slide-box id="featuredItems"
-                       on-slide-changed="showMeta($index)"
-                       auto-play="true"
-                       show-pager="false"
-                       does-continue="true">
+      <div class="featuredOffers">
+        <div class="featureSlideMask">
+          <ion-slide-box id="featuredItems"
+                         on-slide-changed="showMeta($index)"
+                         auto-play="true"
+                         show-pager="false"
+                         does-continue="true">
 
-          <ion-slide id="slide{{$index}}"
-                     ng-repeat="item in items"
-                  >
-            <div class="featuredOfferBox">
+            <ion-slide id="slide{{$index}}"
+                       ng-repeat="item in items"
+                       class="featureSlide"
+                    >
+              <div class="featuredOfferBox">
 
-              <img class="featuredOfferImg" src="{{item.image}}">
-            </div>
-          </ion-slide>
-        </ion-slide-box>
+                <img class="featuredOfferImg" src="{{item.image}}" ng-click="scrollToItem(item)">
+              </div>
+            </ion-slide>
+          </ion-slide-box>
+        </div>
+
       </div>
+      <!--<div class="featureMetaBox">-->
+        <!--<div id="featureMeta{{item.itemId}}" class="featureMeta"-->
+             <!--ng-repeat="item in items"-->
+             <!--ng-show="item.presentFeature"-->
+             <!-->
+          <!--<h3>{{item.itemName}} <button class="button button-small" ng-click="scrollToItem(item)">-->
+            <!--Gonna catch'em-->
+          <!--</button></h3>-->
 
-    </div>
-    {{items[activeItem] | json}}
-    <div class="featureMetaBox">
-      <div id="featureMeta{{item.itemId}}" class="featureMeta"
-           ng-repeat="item in items"
-           ng-show="item.presentFeature"
-           >
-        <h3>{{item.itemName}}</h3>
-        <button class="button" ng-click="scrollToItem(item)">
-          Gonna catch'em
-        </button>
-      </div>
+        <!--</div>-->
+      <!--</div>-->
     </div>
 
-    <h2>Recent Offers
-      <button class="button"
-                              ng-click="toggleSearch()"
-                          >
-        <i class="icon ion-search"></i></button></h2>
+    <h2>More Stuff to buy</h2>
 
-    <div id="searchBox"
-         ng-show="buttonIsShown" class="list list-inset">
-      <label class="item item-input">
-        <i class="icon ion-search placeholder-icon"></i>
-        <input type="text" placeholder="Search">
-      </label>
-    </div>
+    <!--<div id="searchBox" class="list list-inset">-->
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" placeholder="Search">
+    </label>
+    <!--</div>-->
 
 
-    <div id="[itemBox{{item.itemId}}]" class="list card" ng-repeat="item in items">
+    <div id="itemBox{{item.itemId}}" class="list card" ng-repeat="item in items">
       <div class="item item-text-wrap">
         <h3>{{item.itemName}}</h3>
       </div>
-      <div class="item item-image">
-        <img src="{{item.image}}">
+      <div id="itemImage{{item.itemId}}" class="item item-image itemImageWrapper">
+        <img  src="{{item.image}}" ng-click="enlargeImage(item)">
       </div>
       <div class="item item-text-wrap">
         <p>{{item.description}}</p>

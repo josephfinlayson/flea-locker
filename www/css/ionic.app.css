@@ -8403,8 +8403,38 @@ a.button {
   .map-wrapper #map {
     flex: 1; }
 
-.featuredOfferBox {
-  background-color: #33cd5f; }
+/*
+.item.item-input {
+
+
+   animation-name: slideIn;
+   animation-timing-function: linear;
+   animation-duration: 0.3s;
+}
+
+
+
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-40px);
+    }
+    to {
+        transform: translateX(100px) !important;
+    }
+}
+*/
+* {
+  font-family: "Helvetica Neue", "Roboto", sans-serif; }
+
+#buyHead {
+  background-image: url("/img/logo.png");
+  background-repeat: no-repeat; }
+
+.featuredOffers {
+  position: relative;
+  top: 100px;
+  height: 300px; }
 
 .featuredOfferImg {
   max-height: inherit;
@@ -8422,7 +8452,18 @@ h2 {
 .featureSlideMask {
   overflow: hidden;
   max-height: 200px;
-  -webkit-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
-  -moz-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
-  -ms-clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%);
-  clip-path: polygon(0 20%, 100% 0, 100% 80%, 0 100%); }
+  -webkit-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  -moz-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  -ms-clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%);
+  clip-path: polygon(0 30%, 100% 0, 100% 70%, 0 100%); }
+
+.blur {
+  -webkit-filter: blur(15px); }
+
+.itemImageWrapper {
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 100px; }
+
+.largeItemImage {
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 500px; }
