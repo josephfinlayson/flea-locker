@@ -9,13 +9,12 @@ angular.module('starter.controllers')
                                      $timeout,
     getItemsFromServer, getItems) {
 
-
-
         items[0].presentFeature = true;
 
         console.log(getItemsFromServer)
         $scope.saveAndGo = function(item){
             console.log(item);
+
             $state.go('tab.success', {item: item})
 
         }
@@ -43,7 +42,7 @@ angular.module('starter.controllers')
 
             getItemsFromServer.then(function(items){
                 console.log(items)
-                 _.prototype.reverse.bind(items)
+                var items =  _.chain(items).reverse().value()
                 $scope.items = items.concat($scope.items);
                 console.log($scope.items)
                 //$scope.$apply()

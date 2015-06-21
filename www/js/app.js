@@ -28,6 +28,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
         $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):|data:image\//);
 
+        $ionicConfigProvider.views.maxCache(0);
         $ionicConfigProvider.views.transition('android')
         // Ionic uses AngularUI Router which uses the concept of states
         // Learn more here: https://github.com/angular-ui/ui-router
