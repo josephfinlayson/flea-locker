@@ -1,5 +1,17 @@
 *{
   font-family: "Helvetica Neue", "Roboto", sans-serif;
+
+}
+
+ion-view[view-title="Flea Locker"]{
+
+}
+
+
+#buyHead{
+  background-image: url("/img/logo.png");
+  background-repeat: no-repeat;
+  //background-position-y: 80px;
 }
 
 @mixin clip-path($clip) {
@@ -9,9 +21,13 @@
   clip-path: $clip;
 }
 
-.featuredOfferBox{
-  //height: 400px;
-  background-color: #33cd5f;
+.featuredOffers{
+  position: relative;
+  top: 100px;
+  height: 300px;
+  //background-color: #fff8a1;
+  //padding: 0&;
+  //background-image: url(http://www.transparenttextures.com/patterns/green-gobbler.png);
 }
 
 .featuredOfferImg{
@@ -32,13 +48,27 @@ h2{
   font-size: 16pt;
 }
 
-#featuredItems{
+#buyHead{
 
 }
 
 .featureSlideMask{
-
   overflow: hidden;
   max-height: 200px;
-  @include clip-path(polygon(0 20%, 100% 0, 100% 80%, 0 100%));
+
+  @include clip-path(polygon(0 30%, 100% 0, 100% 70%, 0 100%));
+}
+
+.blur {-webkit-filter: blur(15px);}
+
+.itemImageWrapper {
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 100px;
+
+}
+
+.largeItemImage{
+  transition: max-height 1s ease-in-out 0s;
+  max-height: 500px;
+
 }

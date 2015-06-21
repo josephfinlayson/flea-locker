@@ -44,6 +44,52 @@ angular.module('starter.controllers')
             'Get your self the famous vintage phone'
         ));
 
+        items.push(new Item(
+            2,
+            'img/camera.jpg',
+            'Instant picture camera',
+            '25',
+            [",",'where in building', 'locker identifier'],
+            'Not a polaroid but still super cool!'
+        ));
+
+        items.push(new Item(
+            3,
+            'img/duck.jpg',
+            'Rubber Duck',
+            '50',
+            [",",'where in building', 'locker identifier'],
+            'My best friend has to go because I need to pay my rent. I feel so awful.'
+        ));
+
+        items.push(new Item(
+            4,
+            'img/kitty.jpg',
+            'Lucky Cat',
+            '5',
+            [",",'where in building', 'locker identifier'],
+            'I\'ve been lucky all the time since. Good condition!'
+        ));
+
+        items.push(new Item(
+            5,
+            'img/knife.jpg',
+            'Swiss Army knife',
+            '80',
+            [",",'where in building', 'locker identifier'],
+            'The classsic. Be McGyver'
+        ));
+
+        items.push(new Item(
+            6,
+            'img/luggage.jpg',
+            'Luggage',
+            '30',
+            [",",'where in building', 'locker identifier'],
+            'Just came back from a long business journey. Never again.'
+        ));
+
+
         items[0].presentFeature = true;
 
         $scope.toggleSearch = function () {
@@ -80,6 +126,14 @@ angular.module('starter.controllers')
 
             _activeItem.presentFeature = true;
 
+        }
+
+        $scope.enlargeImage = function (_item) {
+            var _element = angular.element(
+                document.getElementById('itemImage' + _item.itemId)
+            );
+
+            angular.element.addClass(_element, 'largeItemImage');
         }
 
         console.log(items)
