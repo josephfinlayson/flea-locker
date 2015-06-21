@@ -45,13 +45,15 @@ angular.module('starter.controllers')
         $scope.featured = getItems;
 
         $scope.$on('$ionicView.afterEnter', function(){
-            getItemsFromServer().then(function(items){
-                $scope.items = []
-                $scope.items = getItems;
-                var items =  _.chain(items).reverse().value();
-
-                $scope.items = items.concat($scope.items);
-            })
+            if (!$scope.initialized){
+                getItemsFromServer().then(function(items){
+                    $scope.initialized = true;
+                    $scope.items = []
+                    $scope.items = getItems;
+                    var items =  _.chain(items).reverse().value();
+                    $scope.items = items.concat($scope.items);
+                })
+            }
         })
 
         $scope.showMeta = function (slide) {

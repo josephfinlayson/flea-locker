@@ -1,9 +1,10 @@
 <ion-view view-title="Sell an item">
     <ion-content class="padding">
 
+        <button ng-click="getPhoto($event)"
+                class="button button-block button-primary">Photo</button>
         <form ng-submit="submitForm(form)">
 
-            <button ng-click="getPhoto()" class="button button-block button-primary">Photo</button>
             <!--<img ng-src="data.ImageURI" id="smallimage">-->
             <img ng-src="{{form.lastPhoto}}" style="max-width: 100%; max-width: 100%;">
 
@@ -17,7 +18,7 @@
                     <input type="text" placeholder="Item Name" data-ng-init="form.itemName= 'Nexus Smartphone'" ng-model="form.itemName">
                 </label>
                 <label class="item item-input">
-                    <input type="text" placeholder="Item Price" data-ng-init="form.itemPrice= '100€'" ng-model="form.itemPrice">
+                    <input type="text" placeholder="Item Price" data-ng-init="form.itemPrice= '100'" ng-model="form.itemPrice">
                 </label>
 
                 <!--<label class="item item-input " animation="slide-left-right">

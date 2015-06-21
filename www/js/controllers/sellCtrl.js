@@ -30,16 +30,14 @@ angular.module('starter.controllers')
         };
 
 
-        $scope.getPhoto = function () {
+        $scope.getPhoto = function (event) {
             console.log('Getting camera');
+
             Camera.getPicture()
                 .then(function (imageURI) {
-
                     $scope.data.ImageURI = imageURI;
                     $scope.form.lastPhoto = imageURI;
 
-                    console.log(imageURI)
-                    //  $scope.upload();
                 }, function (err) {
                     console.err(err);
                 }, {
@@ -49,6 +47,9 @@ angular.module('starter.controllers')
                     saveToPhotoAlbum: false,
                     //  destinationType: Camera.DestinationType.DATA_URL
                 });
+            event.preventDefault()
+            event.stopPropagation()
+
         };
 
 
