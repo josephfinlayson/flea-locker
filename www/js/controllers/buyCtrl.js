@@ -2,7 +2,7 @@
  * Created by benjaminskirlo1 on 20.06.15.
  */
 angular.module('starter.controllers')
-    .controller('buyCtrl', function ($scope, $ionicScrollDelegate, $ionicPosition, successItem, $state) {
+    .controller('buyCtrl', function ($scope, $ionicScrollDelegate, $ionicPosition, $state) {
 
         var Item = function(
             _itemId,
@@ -103,10 +103,8 @@ angular.module('starter.controllers')
 
 
         $scope.saveAndGo = function(item){
-
-            successItem.save(item)
-
-            $state.go('tab.success')
+            console.log(item);
+            $state.go('tab.success', {item: item})
 
         }
         $scope.toggleSearch = function () {
@@ -122,53 +120,25 @@ angular.module('starter.controllers')
                 document.getElementById('itemBox' + _item.itemId)
             );
 
-            console.log(_element);
-            console.log($ionicPosition.position(_element));
-
             var _position = $ionicPosition.position(_element);
-
             $ionicScrollDelegate.scrollTo(0, _position.top);
-
         }
 
         $scope.items = items;
 
         $scope.showMeta = function (slide) {
-
             var _activeItem = items[slide % items.length];
-
             for(item in items){
                 items[item].presentFeature = false;
             }
-
             _activeItem.presentFeature = true;
-
         }
 
         $scope.enlargeImage = function (_item) {
             var _element = angular.element(
                 document.getElementById('itemImage' + _item.itemId)
             );
-
             angular.element.addClass(_element, 'largeItemImage');
         }
-
         console.log(items)
-
-    }).service('successItem', function(){
-
-        var items
-
-        return {
-            save: function (item) {
-
-                items = item;
-
-            },
-
-            get: function () {
-                return items
-            }
-        }
-
     })
