@@ -7,12 +7,21 @@ angular.module('starter.controllers')
                                      $ionicPosition,
                                      $state,
                                      $timeout,
+                                     $ionicLoading,
     getItemsFromServer, getItems) {
 
         items[0].presentFeature = true;
         $scope.saveAndGo = function(item){
             console.log(item);
-            $state.go('tab.success', {item: item})
+            $ionicLoading.show({});
+            setTimeout(function () {
+                $state.go('tab.success', {item: item});
+                $ionicLoading.hide();
+
+            }, 500);
+
+
+
 
         }
 
