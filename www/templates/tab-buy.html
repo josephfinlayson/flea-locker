@@ -1,90 +1,88 @@
 <ion-view view-title="Flea Locker">
-  <ion-content class="padding">
-    <div id="buyHead">
-      <!--<h1>Sell Stuff <small> gotta catch'em all</small></h1>-->
+    <ion-content class="padding">
+        <div id="buyHead">
+            <!--<h1>Sell Stuff <small> gotta catch'em all</small></h1>-->
 
-      <!--<h2 class="featuredOffersHeader">Hot right now</h2>-->
+            <!--<h2 class="featuredOffersHeader">Hot right now</h2>-->
 
-      <div class="featuredOffers">
-        <div class="featureSlideMask">
-          <ion-slide-box id="featuredItems"
-                         on-slide-changed="showMeta($index)"
-                         auto-play="true"
-                         show-pager="false"
-                         does-continue="true">
+            <div class="featuredOffers">
+                <div class="featureSlideMask">
+                    <ion-slide-box id="featuredItems"
+                                   on-slide-changed="showMeta($index)"
+                                   auto-play="true"
+                                   show-pager="false"
+                                   does-continue="true">
 
-            <ion-slide id="slide{{$index}}"
-                       ng-repeat="item in items"
-                       class="featureSlide"
-                    >
-              <div class="featuredOfferBox">
+                        <ion-slide id="slide{{$index}}"
+                                   ng-repeat="item in featured"
+                                   class="featureSlide"
+                                >
+                            <div class="featuredOfferBox">
 
-                <img class="featuredOfferImg" src="{{item.image}}" ng-click="scrollToItem(item)">
-              </div>
-            </ion-slide>
-          </ion-slide-box>
+
+                                <img class="featuredOfferImg" src="{{item.image}}" ng-click="scrollToItem(item)">
+                            </div>
+                        </ion-slide>
+                    </ion-slide-box>
+                </div>
+
+            </div>
         </div>
 
-      </div>
+        <h2>More Stuff to buy</h2>
 
-    </div>
+        <label class="item item-input">
+            <i class="icon ion-search placeholder-icon"></i>
+            <input type="text" placeholder="Search">
+        </label>
 
-    <h2>More Stuff to buy</h2>
+        <div id="itemBox{{item.itemId}}" class="list card" ng-repeat="item in items">
+            <div class="item item-text-wrap">
+                <h3>{{item.itemName}}</h3>
+            </div>
+            <div id="itemImage{{item.itemId}}" class="item item-image itemImageWrapper">
+                <img ng-src="{{item.image}}" ng-click="enlargeImage(item, $event)">
+            </div>
+            <div class="item item-text-wrap">
+                <p>{{item.description}}</p>
+                <small>2km from you</small>
 
-    <!--<div id="searchBox" class="list list-inset">-->
-    <label class="item item-input">
-      <i class="icon ion-search placeholder-icon"></i>
-      <input type="text" placeholder="Search">
-    </label>
-    <!--</div>-->
-
-
-    <div id="itemBox{{item.itemId}}" class="list card" ng-repeat="item in items">
-      <div class="item item-text-wrap">
-        <h3>{{item.itemName}}</h3>
-      </div>
-      <div id="itemImage{{item.itemId}}" class="item item-image itemImageWrapper">
-        <img  ng-src="{{item.image}}" ng-click="enlargeImage(item, $event)">
-      </div>
-      <div class="item item-text-wrap">
-        <p>{{item.description}}</p>
-        <small>2km from you</small>
-
-      </div>
-      <div class="item tabs tabs-secondary tabs-icon-left"
-              ng-hide="item.paymentBoxShown">
-        <a class="tab-item" href="#"
-                ng-click="togglePaymentBox(item)">
-          <i class="icon ion-key"></i>
-          Buy & unlock
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-chatbox"></i>
-          Ask questions
-        </a>
-        <a class="tab-item" href="#">
-          <i class="icon ion-share"></i>
-          Share
-        </a>
-      </div>
-      <div class="PaymentBox item tabs tabs-secondary"
-           ng-show="item.paymentBoxShown">
-        <div class="paymentStepBox1">
-            <!--id="checkout" method="post" action="/checkout"-->
-          <form>
-            <!--<div id="payment-form"></div>-->
-            <button
-                    class="button button-positive"
-                   ng-click="saveAndGo(item)"
-                    > {{item.itemPrice}}€</button>
-          </form>
-          <button class="button"
-                ng-click="togglePaymentBox(item)"
-                >Nonono
-          </button>
+            </div>
+            <div class="item tabs tabs-secondary tabs-icon-left"
+                 ng-hide="item.paymentBoxShown">
+                <a class="tab-item" href="#"
+                   ng-click="togglePaymentBox(item)">
+                    <i class="icon ion-key"></i>
+                    Buy & unlock
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-chatbox"></i>
+                    Ask questions
+                </a>
+                <a class="tab-item" href="#">
+                    <i class="icon ion-share"></i>
+                    Share
+                </a>
+            </div>
+            <div class="PaymentBox item tabs tabs-secondary"
+                 ng-show="item.paymentBoxShown">
+                <div class="paymentStepBox1">
+                    <!--id="checkout" method="post" action="/checkout"-->
+                    <form>
+                        <!--<div id="payment-form"></div>-->
+                        <button
+                                class="button button-positive"
+                                ng-click="saveAndGo(item)"
+                                > {{item.itemPrice}}€
+                        </button>
+                    </form>
+                    <button class="button"
+                            ng-click="togglePaymentBox(item)"
+                            >Nonono
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </ion-content>
+    </ion-content>
 </ion-view>
