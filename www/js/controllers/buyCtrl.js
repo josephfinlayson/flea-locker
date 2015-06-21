@@ -2,7 +2,69 @@
  * Created by benjaminskirlo1 on 20.06.15.
  */
 angular.module('starter.controllers')
-    .controller('buyCtrl', function ($scope, $ionicScrollDelegate, $ionicPosition, $state) {
+    .controller('buyCtrl', function ($scope,
+                                     $ionicScrollDelegate,
+                                     $ionicPosition,
+                                     $state,
+                                     $timeout,
+    getItemsFromServer, getItems) {
+
+
+
+        items[0].presentFeature = true;
+
+        console.log(getItemsFromServer)
+        $scope.saveAndGo = function(item){
+            console.log(item);
+            $state.go('tab.success', {item: item})
+
+        }
+
+        $scope.toggleSearch = function () {
+            $scope.buttonIsShown = !$scope.buttonIsShown;
+        }
+
+        $scope.togglePaymentBox = function (_item) {
+            _item.paymentBoxShown = !_item.paymentBoxShown;
+        }
+        
+        $scope.scrollToItem = function (_item) {
+            var _element = angular.element(
+                document.getElementById('itemBox' + _item.itemId)
+            );
+
+            var _position = $ionicPosition.position(_element);
+            $ionicScrollDelegate.scrollTo(0, _position.top);
+        }
+
+        $scope.$on('$ionicView.afterEnter', function(){
+
+            $scope.items = getItems;
+
+            getItemsFromServer.then(function(items){
+                console.log(items)
+                 _.prototype.reverse.bind(items)
+                $scope.items = items.concat($scope.items);
+                console.log($scope.items)
+                //$scope.$apply()
+                $timeout(function(){})
+            })
+
+        })
+
+        $scope.showMeta = function (slide) {
+            var _activeItem = items[slide % items.length];
+            for(item in items){
+                items[item].presentFeature = false;
+            }
+            _activeItem.presentFeature = true;
+        };
+
+        $scope.enlargeImage = function (_item, a) {
+            angular.element.addClass(a.target.parentElement, 'largeItemImage');
+        }
+
+    }).service('getItems', function(){
 
         var Item = function(
             _itemId,
@@ -20,12 +82,11 @@ angular.module('starter.controllers')
             this.location = _location; //How will this be done if we want to anonymise the exact location of the locker
             this.description = _description;
             this.lockerCode = _lockerCode;
-
             this.paymentBoxShown = false;
             this.presentFeature = false;
         };
-
         items = [];
+
         items.push(new Item(
             0,
             'img/headphones.jpg',
@@ -99,46 +160,12 @@ angular.module('starter.controllers')
         ));
 
 
-        items[0].presentFeature = true;
+        return items;
 
+    }).service('getItemsFromServer', function($http, endPointAddress){
+      return  $http.get(endPointAddress + '/items').then(function(res){
 
-        $scope.saveAndGo = function(item){
-            console.log(item);
-            $state.go('tab.success', {item: item})
+            return res.data;
+        })
 
-        }
-        $scope.toggleSearch = function () {
-            $scope.buttonIsShown = !$scope.buttonIsShown;
-        }
-
-        $scope.togglePaymentBox = function (_item) {
-            _item.paymentBoxShown = !_item.paymentBoxShown;
-        }
-        
-        $scope.scrollToItem = function (_item) {
-            var _element = angular.element(
-                document.getElementById('itemBox' + _item.itemId)
-            );
-
-            var _position = $ionicPosition.position(_element);
-            $ionicScrollDelegate.scrollTo(0, _position.top);
-        }
-
-        $scope.items = items;
-
-        $scope.showMeta = function (slide) {
-            var _activeItem = items[slide % items.length];
-            for(item in items){
-                items[item].presentFeature = false;
-            }
-            _activeItem.presentFeature = true;
-        }
-
-        $scope.enlargeImage = function (_item) {
-            var _element = angular.element(
-                document.getElementById('itemImage' + _item.itemId)
-            );
-            angular.element.addClass(_element, 'largeItemImage');
-        }
-        console.log(items)
     })
